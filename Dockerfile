@@ -1,6 +1,6 @@
 # Stage 1: Build the application
-# Use Maven with JDK 8
-FROM maven:3.8.6-openjdk-8-slim AS build
+# Use Maven with Eclipse Temurin JDK 8 (Official OpenJDK successor)
+FROM maven:3.9-eclipse-temurin-8 AS build
 
 # Set the working directory
 WORKDIR /app
@@ -25,7 +25,8 @@ COPY src ./src
 RUN mvn package -DskipTests -B
 
 # Stage 2: Create the runtime image
-FROM openjdk:8-jre-slim
+# Use Eclipse Temurin JRE 8 (Lightweight and maintained)
+FROM eclipse-temurin:8-jre
 
 # Set the working directory
 WORKDIR /app
